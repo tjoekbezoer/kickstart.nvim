@@ -434,6 +434,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       -- vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
       vim.keymap.set('n', '<leader><leader>', function()
+        -- local actions = require 'telescope.actions'
         local action_state = require 'telescope.actions.state'
 
         builtin.buffers {
@@ -450,8 +451,8 @@ require('lazy').setup({
               end)
             end
 
-            map('n', '<c-x>', delete_buf)
-            map('i', '<c-x>', delete_buf)
+            map({ 'i', 'n' }, '<c-x>', delete_buf)
+            -- map({ 'i', 'n' }, '<c-x>', actions.delete_buffer)
             return true
           end,
         }
