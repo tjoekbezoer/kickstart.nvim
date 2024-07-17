@@ -956,6 +956,39 @@ require('lazy').setup({
     end,
   },
 
+  { -- Improved netrw, with support for floating window
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+      'MunifTanjim/nui.nvim',
+    },
+    config = function()
+      -- Disable the default fuzzy searcher because it's very annoying
+      -- and never does what I want. Also disable closing the window
+      -- with escape since that's what I use for clearing the entered
+      -- search term in normal '/' searching.
+      require('neo-tree').setup {
+        window = {
+          mappings = {
+            ['/'] = 'noop', -- "noop" removes a default mapping
+            ['g/'] = 'fuzzy_finder',
+            ['<esc>'] = 'noop',
+          },
+        },
+      }
+
+      local neo = require 'neo-tree.command'
+      vim.keymap.set('n', '<leader>g', function()
+        neo.execute {
+          -- toggle = true,
+          -- source = 'buffers',
+          position = 'float',
+        }
+      end, { desc = '[G]o Browsing' })
+    end,
+  },
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- place them in the correct locations.
