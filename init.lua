@@ -897,7 +897,7 @@ require('lazy').setup({
       }
       vim.keymap.set('n', '<leader>b', function()
         MiniFiles.open()
-      end, { desc = '' })
+      end, { desc = '[B]rowse Filesystem' })
 
       -- Better Around/Inside textobjects
       --
