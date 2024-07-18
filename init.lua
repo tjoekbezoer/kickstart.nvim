@@ -194,6 +194,21 @@ require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
+  {
+    'mbbill/undotree',
+    config = function()
+      vim.keymap.set('n', '<leader>z', vim.cmd.UndotreeToggle, { desc = 'Undo Tree' })
+
+      vim.g.undotree_WindowLayout = 2
+      vim.g.undotree_SplitWidth = 40
+      vim.g.undotree_DiffpanelHeight = 20
+      vim.g.undotree_SetFocusWhenToggle = 1
+      -- TODO Find out how to use `delta` as a diff program. Right now the
+      -- displayed results are garbled for some reason...
+      vim.g.undotree_DiffCommand = 'diff'
+    end,
+  },
+
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
   -- keys can be used to configure plugin behavior/loading/etc.
