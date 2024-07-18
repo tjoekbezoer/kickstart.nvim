@@ -73,6 +73,18 @@ vim.opt.scrolloff = 20
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- Set the current working directory of the active window, based on
+-- the currently displayed buffer
+vim.keymap.set('n', 'cd', function()
+  local cur_filename = vim.api.nvim_buf_get_name(0)
+  if cur_filename == nil or cur_filename == '' then
+    return
+  end
+
+  local cur_directory = vim.fs.dirname(cur_filename)
+  vim.fn.chdir(cur_directory)
+end)
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
@@ -827,6 +839,21 @@ require('lazy').setup({
           trim_right = '<',
         },
       }
+
+      local files_set_cwd = function()
+        -- Works only if cursor is on the valid file system entry
+        local cur_entry_path = MiniFiles.get_fs_entry().path
+        local cur_directory = vim.fs.dirname(cur_entry_path)
+        vim.fn.chdir(cur_directory)
+      end
+
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'MiniFilesBufferCreate',
+        callback = function(args)
+          vim.keymap.set('n', 'cd', files_set_cwd, { buffer = args.data.buf_id })
+        end,
+      })
+
       vim.keymap.set('n', '<leader>b', function()
         MiniFiles.open()
       end, { desc = '[B]rowse Filesystem' })
