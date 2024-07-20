@@ -98,6 +98,8 @@ vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]])
 -- Yank straight to system clipboard
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
 vim.keymap.set('n', '<leader>Y', [["+Y]])
+-- Duplicate line, putting the cursor at the right spot
+vim.keymap.set('n', 'yp', [[mqyyp`qj]])
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
