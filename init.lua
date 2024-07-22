@@ -102,6 +102,8 @@ vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
 vim.keymap.set('n', '<leader>Y', [["+Y]])
 -- Duplicate line, putting the cursor at the right spot
 vim.keymap.set('n', 'yp', [[mqyyp`qj]])
+-- Select last change/paste. A save counts changing the entire file...
+vim.keymap.set('n', 'gV', '`[v`]')
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
