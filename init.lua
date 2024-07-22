@@ -812,16 +812,16 @@ require('lazy').setup({
     end,
   },
 
-  -- {
-  --   'folke/tokyonight.nvim',
-  --   priority = 1000, -- Make sure to load this before all the other start plugins.
-  --   init = function()
-  --     vim.cmd.colorscheme 'tokyonight-night'
-  --
-  --     -- You can configure highlights by doing something like:
-  --     vim.cmd.hi 'Comment gui=none'
-  --   end,
-  -- },
+  {
+    'folke/tokyonight.nvim',
+    -- priority = 1000, -- Make sure to load this before all the other start plugins.
+    --   init = function()
+    --     vim.cmd.colorscheme 'tokyonight-night'
+    --
+    --     -- You can configure highlights by doing something like:
+    --     vim.cmd.hi 'Comment gui=none'
+    --   end,
+  },
   {
     'zenbones-theme/zenbones.nvim',
     dependencies = { 'rktjmp/lush.nvim' },
@@ -834,14 +834,16 @@ require('lazy').setup({
     -- Toggle between light and dark version of the theme
     config = function()
       vim.keymap.set('n', '<leader>tt', function()
+        vim.o.termguicolors = true
         local is_light = vim.o.background == 'light'
+
         if is_light then
           vim.o.background = 'dark'
+          vim.cmd.colorscheme 'tokyonight-night'
         else
           vim.o.background = 'light'
+          vim.cmd.colorscheme 'zenbones'
         end
-        vim.o.termguicolors = true
-        vim.cmd.colorscheme(vim.g.colors_name)
       end)
     end,
   },
