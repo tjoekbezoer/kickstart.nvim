@@ -241,6 +241,9 @@ require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
+  -- Autoindent on p/P/o/O a bit smarter than default
+  'ku1ik/vim-pasta',
+
   {
     'mbbill/undotree',
     config = function()
