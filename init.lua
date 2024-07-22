@@ -1,3 +1,5 @@
+vim.g.neovide_input_macos_option_key_is_meta = 'both'
+
 -- Set <space> as the leader key
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
