@@ -974,7 +974,9 @@ require('lazy').setup({
   },
   {
     'nvim-treesitter/nvim-treesitter-context',
-    opts = {},
+    opts = {
+      multiline_threshold = 1,
+    },
   },
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
