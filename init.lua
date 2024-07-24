@@ -858,13 +858,20 @@ require('lazy').setup({
   },
 
   -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  {
+    'folke/todo-comments.nvim',
+    event = 'VimEnter',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = { signs = false },
+  },
 
-  { -- Collection of various small independent plugins/modules
+  {
     'echasnovski/mini.nvim',
     config = function()
       -- Simple file browser
-      require('mini.files').setup {
+      local MiniFiles = require 'mini.files'
+
+      MiniFiles.setup {
         mappings = {
           close = 'q',
           go_in = '<right>',
@@ -873,7 +880,7 @@ require('lazy').setup({
           go_out_plus = 'H',
           reset = '<BS>',
           reveal_cwd = '@',
-          show_help = 'g?',
+          show_help = '<C-/>',
           synchronize = '=',
           trim_left = '>',
           trim_right = '<',
@@ -904,7 +911,9 @@ require('lazy').setup({
       --  - va)  - [V]isually select [A]round [)]paren
       --  - yinq - [Y]ank [I]nside [N]ext [']quote
       --  - ci'  - [C]hange [I]nside [']quote
-      require('mini.ai').setup { n_lines = 500 }
+      require('mini.ai').setup {
+        n_lines = 500,
+      }
 
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
       --
