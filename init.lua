@@ -837,7 +837,7 @@ require('lazy').setup({
 
     priority = 1000,
     init = function()
-      vim.cmd.colorscheme 'zenbones'
+      vim.cmd.colorscheme 'zenwritten'
       vim.o.background = 'light'
     end,
     -- Toggle between light and dark version of the theme
@@ -848,10 +848,11 @@ require('lazy').setup({
 
         if is_light then
           vim.o.background = 'dark'
-          vim.cmd.colorscheme 'tokyonight-night'
+          -- vim.cmd.colorscheme 'tokyonight-night'
+          vim.cmd.colorscheme 'zenwritten'
         else
           vim.o.background = 'light'
-          vim.cmd.colorscheme 'zenbones'
+          vim.cmd.colorscheme 'zenwritten'
         end
       end)
     end,
