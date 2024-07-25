@@ -162,6 +162,10 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('n', '<C-,>', 'gT', { desc = 'Move to the prev tab' })
 vim.keymap.set('n', '<C-.>', 'gt', { desc = 'Move to the next tab' })
 
+-- Scroll faster
+vim.keymap.set('n', '<C-e>', '7<C-e>')
+vim.keymap.set('n', '<C-y>', '7<C-y>')
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
