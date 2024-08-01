@@ -133,17 +133,18 @@ vim.keymap.set('n', '<left>', 'h')
 vim.keymap.set('n', '<right>', 'l')
 -- Set vertical arrow keys to visual line movement (this takes
 -- into account line wrapping). When jumping to a relative line,
--- at it to the jumplist
+-- add it to the jumplist. Also, use j/k instead of gj/gk as the
+-- line count is off when jumping relative lines.
 vim.keymap.set('n', '<up>', function()
   if vim.v.count > 1 then
-    return "m'" .. vim.v.count .. 'gk'
+    return "m'" .. vim.v.count .. 'k'
   else
     return 'gk'
   end
 end, { expr = true })
 vim.keymap.set('n', '<down>', function()
   if vim.v.count > 1 then
-    return "m'" .. vim.v.count .. 'gj'
+    return "m'" .. vim.v.count .. 'j'
   else
     return 'gj'
   end
