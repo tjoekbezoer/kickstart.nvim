@@ -106,15 +106,15 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
 -- Delete without replacing yank register
-vim.keymap.set('x', '<leader>p', [["_dP]])
-vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]])
+vim.keymap.set('x', '<leader>p', [["_dP]], { desc = 'Paste without replacing yank register' })
+vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]], { desc = 'Delete without replacing yank register' })
 -- Yank straight to system clipboard
-vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
-vim.keymap.set('n', '<leader>Y', [["+Y]])
+vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]], { desc = 'Paste from system clipboard' })
+vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = 'Paste to end of line from system clipboard' })
 -- Duplicate line, putting the cursor at the right spot
-vim.keymap.set('n', 'yp', [[mqyyp`qj]])
+vim.keymap.set('n', 'yp', [[mqyyp`qj]], { desc = 'Duplicate line' })
 -- Select last change/paste. A save counts changing the entire file...
-vim.keymap.set('n', 'gV', '`[v`]')
+vim.keymap.set('n', 'gV', '`[v`]', { desc = 'Select last change' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
