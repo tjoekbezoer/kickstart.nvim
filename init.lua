@@ -166,6 +166,11 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Walking through all windows is less useful than switching between
+-- the two most recent
+vim.keymap.set('n', '<C-w><C-w>', '<C-w><C-p>')
+vim.keymap.set('n', '<C-w><C-p>', '<C-w><C-w>')
+
 -- Keybindings for changing tabs
 vim.keymap.set('n', '<C-,>', 'gT', { desc = 'Move to the prev tab' })
 vim.keymap.set('n', '<C-.>', 'gt', { desc = 'Move to the next tab' })
