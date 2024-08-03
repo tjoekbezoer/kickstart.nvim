@@ -29,8 +29,13 @@ vim.opt.showmode = false
 --  See `:help 'clipboard'`
 vim.opt.clipboard = 'unnamedplus'
 
+-- vim.opt.formatoptions = 'jtcroql'
+-- vim.opt.formatoptions = 'jcroql'
+vim.opt.textwidth = 0
 -- Enable break indent
 vim.opt.breakindent = true
+-- Break on whole words when wrap is enabled
+vim.opt.linebreak = true
 
 -- Save undo history
 vim.opt.undofile = true
