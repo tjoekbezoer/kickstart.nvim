@@ -846,7 +846,13 @@ require('lazy').setup({
       }
     end,
   },
-
+  {
+    'folke/zen-mode.nvim',
+    opts = {},
+    config = function()
+      vim.keymap.set('n', '<leader>x', '<cmd>ZenMode<cr>', { desc = 'Toggle [Z]en Mode' })
+    end,
+  },
   {
     'folke/tokyonight.nvim',
     -- priority = 1000, -- Make sure to load this before all the other start plugins.
