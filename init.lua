@@ -48,6 +48,9 @@ vim.opt.smartcase = true
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
 
+-- To be able to indentify folds when they are opened
+vim.opt.foldcolumn = '2'
+
 -- Decrease update time
 vim.opt.updatetime = 250
 
