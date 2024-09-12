@@ -374,6 +374,7 @@ require('lazy').setup({
       { '<leader>h', desc = 'Git [H]unk', mode = 'v' },
     },
     opts = {
+      delay = 300,
       icons = {
         mappings = false,
       },
