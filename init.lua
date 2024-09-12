@@ -219,6 +219,33 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   {
+    'rmagatti/auto-session',
+    lazy = false,
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+    },
+    opts = {
+      suppressed_dirs = { '~/', '~/Sites', '~/Downloads', '/' },
+      -- log_level = 'debug',
+      session_lens = {
+        previewer = false,
+
+        mappings = {
+          -- Mode can be a string or a table, e.g. {"i", "n"} for both insert and normal mode
+          delete_session = { 'i', '<C-X>' },
+          alternate_session = { 'i', '<C-6>' },
+        },
+      },
+    },
+    keys = {
+      { '<leader>sw', '<cmd>SessionSearch<CR>', desc = 'Session search' },
+      { '<leader>wa', '<cmd>SessionSave<CR>', desc = 'Save session' },
+      { '<leader>wd', '<cmd>Autosession delete<CR>', desc = 'Delete session' },
+      -- { '<leader>wa', '<cmd>SessionToggleAutoSave<CR>', desc = 'Toggle autosave' },
+    },
+  },
+
+  {
     'ThePrimeagen/harpoon',
     branch = 'harpoon2',
     dependencies = {
@@ -465,7 +492,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-      vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
+      -- vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
