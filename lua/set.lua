@@ -1,35 +1,24 @@
 vim.g.neovide_input_macos_option_key_is_meta = 'both'
 vim.g.neovide_hide_mouse_when_typing = 1
 
--- Set <space> as the leader key
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
--- [[ Setting options ]]
--- See `:help vim.opt`
--- NOTE: You can change these options as you wish!
---  For more options, you can see `:help option-list`
-
 -- Make line numbers default
 vim.opt.number = true
--- You can also add relative line numbers, to help with jumping.
---  Experiment for yourself to see if you like it!
 vim.opt.relativenumber = true
 
--- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
 vim.opt.clipboard = 'unnamedplus'
 
+vim.opt.smartindent = true
 -- vim.opt.formatoptions = 'jtcroql'
 -- vim.opt.formatoptions = 'jcroql'
 vim.opt.textwidth = 0
@@ -49,7 +38,7 @@ vim.opt.smartcase = true
 vim.opt.signcolumn = 'yes'
 
 -- To be able to indentify folds when they are opened
-vim.opt.foldcolumn = '2'
+vim.opt.foldcolumn = '0'
 
 -- Decrease update time
 vim.opt.updatetime = 250
@@ -85,9 +74,6 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 5
-
--- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
 
 -- Set highlight on search
 vim.opt.hlsearch = true
