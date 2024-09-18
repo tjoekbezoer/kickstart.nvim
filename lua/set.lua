@@ -1,6 +1,9 @@
 vim.g.neovide_input_macos_option_key_is_meta = 'both'
 vim.g.neovide_hide_mouse_when_typing = 1
 
+-- Added `localoptions`, as recommended by auto-session checkhealth
+vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,terminal,localoptions'
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
