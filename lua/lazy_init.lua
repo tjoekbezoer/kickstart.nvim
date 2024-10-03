@@ -48,6 +48,8 @@ require('lazy').setup({
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
+  -- Operator pending addition to operate on indentation
+  -- level.
   { 'michaeljsmith/vim-indent-object' },
   -- Detect tabstop and shiftwidth automatically
   { 'tpope/vim-sleuth' },

@@ -1,25 +1,5 @@
--- Clear on pressing <Esc> in normal mode
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-
--- Set the current working directory of the active window, based on
--- the currently displayed buffer
-vim.keymap.set('n', 'cd', function()
-  local cur_filename = vim.api.nvim_buf_get_name(0)
-  if cur_filename == nil or cur_filename == '' then
-    return
-  end
-
-  local cur_directory = vim.fs.dirname(cur_filename)
-  vim.fn.chdir(cur_directory)
-end)
-
--- Cursor repositioning corrections
-vim.keymap.set('n', 'J', 'mzJ`z')
-vim.keymap.set('n', '<C-d>', '<C-d>zz')
-vim.keymap.set('n', '<C-u>', '<C-u>zz')
-vim.keymap.set('n', 'n', 'nzzzv')
-vim.keymap.set('n', 'N', 'Nzzzv')
-
+-- Editing
+-- -------
 -- Better indenting in visual mode
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
@@ -72,6 +52,13 @@ vim.keymap.set('n', '<down>', function()
   end
 end, { expr = true })
 
+-- Cursor positioning corrections
+vim.keymap.set('n', 'J', 'mzJ`z')
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
+
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
@@ -98,6 +85,21 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 -- Misc
 -- ----
+-- Clear on pressing <Esc> in normal mode
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+-- Set the current working directory of the active window, based on
+-- the currently displayed buffer
+vim.keymap.set('n', 'cd', function()
+  local cur_filename = vim.api.nvim_buf_get_name(0)
+  if cur_filename == nil or cur_filename == '' then
+    return
+  end
+
+  local cur_directory = vim.fs.dirname(cur_filename)
+  vim.fn.chdir(cur_directory)
+end)
+
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
