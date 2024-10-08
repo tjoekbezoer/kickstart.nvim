@@ -74,6 +74,10 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Walking through quikfix list items
+vim.keymap.set('n', '<A-n>', '<cmd>cnext<cr>')
+vim.keymap.set('n', '<A-e>', '<cmd>cprev<cr>')
+
 -- Walking through all windows is less useful than switching between
 -- the two most recent
 vim.keymap.set('n', '<C-w><C-w>', '<C-w><C-p>')
@@ -109,6 +113,27 @@ vim.keymap.set('n', 'cd', function()
   local cur_directory = vim.fs.dirname(cur_filename)
   vim.fn.chdir(cur_directory)
 end)
+
+-- Quickfix delete
+-- Set `dd` to delete a quickfix list item, but only set the
+-- keymap when we are focused on the quickfix window itself.
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'qf',
+  desc = 'Set keymappings for the quickfix list',
+  callback = function()
+    vim.keymap.set('n', 'dd', function()
+      local qf = vim.fn.getqflist()
+      local idx = vim.fn.line '.'
+
+      table.remove(qf, idx)
+      vim.fn.setqflist(qf, 'r')
+
+      local win = vim.fn.win_getid()
+      local newpos = math.min(#qf, idx)
+      vim.api.nvim_win_set_cursor(win, { newpos, 0 })
+    end, { buffer = true })
+  end,
+})
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
