@@ -38,14 +38,24 @@ vim.keymap.set('n', '<right>', 'l')
 -- add it to the jumplist. Also, use j/k instead of gj/gk as the
 -- line count is off when jumping relative lines.
 vim.keymap.set('n', '<up>', function()
-  if vim.v.count > 1 then
+  -- Only perform this trick when we're not in a quickfix list
+  local isqf = vim.fn.getwininfo(vim.fn.win_getid())[1]['quickfix']
+
+  if isqf == 1 then
+    return 'k'
+  elseif vim.v.count > 1 then
     return "m'" .. vim.v.count .. 'k'
   else
     return 'gk'
   end
 end, { expr = true })
 vim.keymap.set('n', '<down>', function()
-  if vim.v.count > 1 then
+  -- Only perform this trick when we're not in a quickfix list
+  local isqf = vim.fn.getwininfo(vim.fn.win_getid())[1]['quickfix']
+
+  if isqf == 1 then
+    return 'j'
+  elseif vim.v.count > 1 then
     return "m'" .. vim.v.count .. 'j'
   else
     return 'gj'
