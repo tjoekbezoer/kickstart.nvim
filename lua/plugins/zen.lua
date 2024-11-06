@@ -1,7 +1,12 @@
 return {
   'folke/zen-mode.nvim',
-  opts = {},
-  config = function()
-    vim.keymap.set('n', '<leader>x', '<cmd>ZenMode<cr>', { desc = 'Toggle [Z]en Mode' })
-  end,
+  opts = {
+    window = {
+      backdrop = 1,
+      width = 150,
+    },
+  },
+  keys = {
+    { '<leader>x', '<cmd>ZenMode<cr>', desc = 'Toggle [Z]en Mode' },
+  },
 }
