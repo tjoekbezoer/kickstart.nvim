@@ -18,6 +18,10 @@ return {
         trim_left = '>',
         trim_right = '<',
       },
+      windows = {
+        preview = true,
+        width_preview = 120,
+      },
     }
 
     local files_set_cwd = function()
@@ -36,6 +40,11 @@ return {
 
     vim.keymap.set('n', '<leader>b', function()
       MiniFiles.open()
+    end, { desc = '[B]rowse Filesystem' })
+
+    vim.keymap.set('n', '<leader>rr', function()
+      MiniFiles.open(vim.api.nvim_buf_get_name(0))
+      MiniFiles.reveal_cwd()
     end, { desc = '[B]rowse Filesystem' })
 
     -- Better Around/Inside textobjects
