@@ -43,7 +43,13 @@ vim.opt.smartcase = true
 vim.opt.signcolumn = 'yes'
 
 -- To be able to indentify folds when they are opened
-vim.opt.foldcolumn = '0'
+vim.opt.foldmethod = 'manual'
+-- vim.opt.foldmethod = 'expr'
+-- vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldtext = ''
+-- vim.opt.foldlevel = 99
+-- vim.opt.foldnestmax = 3
+vim.opt.foldcolumn = 'auto:1'
 
 -- Decrease update time
 vim.opt.updatetime = 250
