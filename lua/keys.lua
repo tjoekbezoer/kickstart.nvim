@@ -77,6 +77,9 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- Walking through quikfix list items
 vim.keymap.set('n', '<A-n>', '<cmd>cnext<cr>')
 vim.keymap.set('n', '<A-e>', '<cmd>cprev<cr>')
+-- Walking through quickfix list history
+vim.keymap.set('n', '<CA-n>', '<cmd>cnewer<cr>')
+vim.keymap.set('n', '<CA-e>', '<cmd>colder<cr>')
 
 -- Walking through all windows is less useful than switching between
 -- the two most recent
