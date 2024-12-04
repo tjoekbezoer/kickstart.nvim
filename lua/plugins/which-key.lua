@@ -24,6 +24,9 @@ return {
     icons = {
       mappings = false,
     },
+    plugins = {
+      marks = false,
+    },
     expand = 1,
   },
 }
