@@ -74,9 +74,12 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Logical inverse of <C-t> (move back in taglist) is <CA-t> to move forward in taglist
+vim.keymap.set('n', '<CA-t>', '<cmd>ta<cr>', { desc = 'Move forward one tag' })
+
 -- Walking through quikfix list items
-vim.keymap.set('n', '<A-n>', '<cmd>cnext<cr>')
-vim.keymap.set('n', '<A-e>', '<cmd>cprev<cr>')
+vim.keymap.set('n', '<A-n>', '<cmd>cnext<cr>zz')
+vim.keymap.set('n', '<A-e>', '<cmd>cprev<cr>zz')
 -- Walking through quickfix list history
 vim.keymap.set('n', '<CA-n>', '<cmd>cnewer<cr>')
 vim.keymap.set('n', '<CA-e>', '<cmd>colder<cr>')
