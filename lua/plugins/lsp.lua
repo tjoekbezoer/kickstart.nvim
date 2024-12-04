@@ -100,15 +100,77 @@ return {
           })
         end
 
-        -- The following autocommand is used to enable inlay hints in your
-        -- code, if the language server you are using supports them
-        --
-        -- This may be unwanted, since they displace some of your code
-        if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-          map('<leader>th', function()
-            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-          end, '[T]oggle Inlay [H]ints')
+        -- Enable ]] and [[ to move to the next and previous highlight.
+        local function move_to_highlight(is_closer)
+          local lsp = vim.lsp
+          local util = vim.lsp.util
+
+          local win = vim.api.nvim_get_current_win()
+          local lnum, col = unpack(vim.api.nvim_win_get_cursor(win))
+          lnum = lnum - 1
+          local cursor = {
+            start = { line = lnum, character = col },
+          }
+          ---@diagnostic disable-next-line: deprecated
+          local get_clients = lsp.get_clients or lsp.get_active_clients
+          local method = 'textDocument/documentHighlight'
+          local bufnr = vim.api.nvim_get_current_buf()
+          local clients = get_clients { bufnr = 0, method = method }
+          if not next(clients) then
+            return
+          end
+          local remaining = #clients
+          local closest = nil
+          ---@param result lsp.DocumentHighlight[]|nil
+          local function on_result(_, result)
+            for _, hl in ipairs(result or {}) do
+              local range = hl.range
+              local cursor_inside_range = (
+                range.start.line <= lnum
+                and range.start.character < col
+                and range['end'].line >= lnum
+                and range['end'].character > col
+              )
+              if not cursor_inside_range and is_closer(cursor, range) and (closest == nil or is_closer(range, closest)) then
+                closest = range
+              end
+            end
+            remaining = remaining - 1
+          end
+          for _, cl in ipairs(clients) do
+            local params = util.make_position_params(win, cl.offset_encoding)
+            cl.request(method, params, on_result, bufnr)
+          end
+          vim.wait(1000, function()
+            return remaining == 0
+          end)
+          if closest then
+            vim.api.nvim_win_set_cursor(win, { closest.start.line + 1, closest.start.character })
+          end
         end
+
+        local function is_before(x, y)
+          if x.start.line < y.start.line then
+            return true
+          elseif x.start.line == y.start.line then
+            return x.start.character < y.start.character
+          else
+            return false
+          end
+        end
+
+        local function next_highlight()
+          return move_to_highlight(is_before)
+        end
+
+        local function prev_highlight()
+          return move_to_highlight(function(x, y)
+            return is_before(y, x)
+          end)
+        end
+
+        vim.keymap.set('n', ']]', next_highlight, { desc = 'Go to next highlight' })
+        vim.keymap.set('n', '[[', prev_highlight, { desc = 'Go to previous highlight' })
       end,
     })
 
