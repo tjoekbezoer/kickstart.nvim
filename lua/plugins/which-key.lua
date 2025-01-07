@@ -26,6 +26,9 @@ return {
     },
     plugins = {
       marks = false,
+      operators = false,
+      motions = false,
+      text_objects = false,
     },
     expand = 1,
   },
