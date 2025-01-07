@@ -19,12 +19,12 @@ require('lazy').setup({
   },
   {
     'zenbones-theme/zenbones.nvim',
-    dependencies = { 'rktjmp/lush.nvim' },
+    dependencies = { 'rktjmp/lush.nvim', 'Shatur/neovim-ayu', 'catppuccin/nvim' },
 
     priority = 1000,
     init = function()
-      vim.cmd.colorscheme 'zenwritten'
       vim.o.background = 'light'
+      vim.cmd.colorscheme 'ayu'
     end,
     -- Toggle between light and dark version of the theme
     config = function()
@@ -34,11 +34,10 @@ require('lazy').setup({
 
         if is_light then
           vim.o.background = 'dark'
-          -- vim.cmd.colorscheme 'tokyonight-night'
-          vim.cmd.colorscheme 'zenwritten'
+          vim.cmd.colorscheme 'rosebones'
         else
           vim.o.background = 'light'
-          vim.cmd.colorscheme 'zenwritten'
+          vim.cmd.colorscheme 'ayu'
         end
       end)
     end,
