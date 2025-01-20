@@ -1,20 +1,22 @@
--- Highlight todo, notes, etc in comments
 return {
   'folke/todo-comments.nvim',
+  cmd = { 'TodoTrouble', 'TodoTelescope' },
   event = 'VimEnter',
-  dependencies = { 'nvim-lua/plenary.nvim' },
-  config = function()
-    local todo = require 'todo-comments'
-    todo.setup {
-      signs = false,
-    }
-
-    vim.keymap.set('n', ']t', function()
-      require('todo-comments').jump_next()
-    end, { desc = 'Next todo comment' })
-
-    vim.keymap.set('n', '[t', function()
-      require('todo-comments').jump_prev()
-    end, { desc = 'Previous todo comment' })
-  end,
+  config = { signs = false },
+  keys = {
+    {
+      ']t',
+      function()
+        require('todo-comments').jump_next()
+      end,
+      desc = 'Next todo comment',
+    },
+    {
+      '[t',
+      function()
+        require('todo-comments').jump_prev()
+      end,
+      desc = 'Previous todo comment',
+    },
+  },
 }
