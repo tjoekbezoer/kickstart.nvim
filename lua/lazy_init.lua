@@ -18,26 +18,50 @@ require('lazy').setup({
     --   end,
   },
   {
+    -- 'Shatur/neovim-ayu', 'catppuccin/nvim'
     'zenbones-theme/zenbones.nvim',
-    dependencies = { 'rktjmp/lush.nvim', 'Shatur/neovim-ayu', 'catppuccin/nvim' },
+    dependencies = { 'rktjmp/lush.nvim', { 'rose-pine/neovim', name = 'rose-pine' } },
 
     priority = 1000,
-    init = function()
-      vim.o.background = 'light'
-      vim.cmd.colorscheme 'ayu'
-    end,
     -- Toggle between light and dark version of the theme
     config = function()
+      require('rose-pine').setup {
+        styles = {
+          italic = false,
+          transparent = false,
+        },
+      }
+
+      local theme = function(type)
+        local t = type or 'dark'
+        vim.g.THEME = t
+        vim.o.background = t
+        vim.cmd.colorscheme(t == 'light' and 'rose-pine-dawn' or 'rose-pine-moon')
+
+        -- Remove blend property from the visual group, because it produces
+        -- weird transparency issues in Neovide
+        local hl = vim.api.nvim_get_hl(0, { name = 'Visual', link = false })
+        hl.blend = 0
+        vim.api.nvim_set_hl(0, 'Visual', hl)
+      end
+
+      -- Wait until vim has finished loading, because the shada file
+      -- is loaded as one of the last things. The THEME variable is
+      -- stored in the shada file.
+      vim.api.nvim_create_autocmd('VimEnter', {
+        callback = function()
+          theme(vim.g.THEME)
+        end,
+      })
+
       vim.keymap.set('n', '<leader>tt', function()
         vim.o.termguicolors = true
         local is_light = vim.o.background == 'light'
 
         if is_light then
-          vim.o.background = 'dark'
-          vim.cmd.colorscheme 'rosebones'
+          theme 'dark'
         else
-          vim.o.background = 'light'
-          vim.cmd.colorscheme 'ayu'
+          theme 'light'
         end
       end)
     end,
