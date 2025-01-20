@@ -4,7 +4,7 @@
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
 
--- Move Lines
+-- Move text vertical
 vim.keymap.set('n', '<A-j>', '<cmd>m .+1<cr>==', { desc = 'Move Down' })
 vim.keymap.set('n', '<A-k>', '<cmd>m .-2<cr>==', { desc = 'Move Up' })
 vim.keymap.set('i', '<A-j>', '<esc><cmd>m .+1<cr>==gi', { desc = 'Move Down' })
@@ -24,6 +24,7 @@ vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = 'Paste to end of line from sy
 
 -- Duplicate line, putting the cursor at the right spot
 vim.keymap.set('n', 'yp', [[mqyyp`qj]], { desc = 'Duplicate line' })
+-- vim.keymap.set('v', 'yp', [[y'>p]], { desc = 'Duplicate selection' })
 
 -- Select last change/paste. A save counts changing the entire file...
 vim.keymap.set('n', 'gV', '`[v`]', { desc = 'Select last change' })
@@ -98,10 +99,16 @@ vim.keymap.set('n', '<C-e>', '7<C-e>')
 vim.keymap.set('n', '<C-y>', '7<C-y>')
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
+vim.keymap.set('n', '[d', function()
+  vim.diagnostic.goto_prev { severity = vim.diagnostic.severity.ERROR }
+end, { desc = 'Go to previous [D]iagnostic message' })
+vim.keymap.set('n', ']d', function()
+  vim.diagnostic.goto_next { severity = vim.diagnostic.severity.ERROR }
+end, { desc = 'Go to next [D]iagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>q', function()
+  vim.diagnostic.setqflist { severity = vim.diagnostic.severity.ERROR }
+end, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Misc
 -- ----
