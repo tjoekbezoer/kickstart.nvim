@@ -68,8 +68,6 @@ require('lazy').setup({
   },
 
   { 'vim-lua/plenary.nvim', lazy = true },
-  -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
 
   -- Operator pending addition to operate on indentation level.
   { 'michaeljsmith/vim-indent-object' },

@@ -74,6 +74,15 @@ return {
       },
     }
 
+    require('mini.comment').setup {
+      mappings = {
+        comment = 'gc',
+        comment_line = 'gcc',
+        comment_visual = 'gc',
+        textobject = 'gc',
+      },
+    }
+
     -- Simple and easy statusline.
     --  You could remove this setup call if you don't like it,
     --  and try some other statusline plugin
