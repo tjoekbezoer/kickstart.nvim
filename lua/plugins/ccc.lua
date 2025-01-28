@@ -22,6 +22,14 @@ return {
         --   [ccc.picker.hex] = { ccc.input.hsl, ccc.output.hex },
         -- },
       },
+      mappings = {
+        ['<right>'] = ccc.mapping.increase1,
+        ['<a-right>'] = ccc.mapping.increase5,
+        ['<c-a-right>'] = ccc.mapping.increase10,
+        ['<left>'] = ccc.mapping.decrease1,
+        ['<a-left>'] = ccc.mapping.decrease5,
+        ['<c-a-left>'] = ccc.mapping.decrease10,
+      },
     }
 
     vim.keymap.set('n', '<leader>cc', '<cmd>CccPick<enter>')
