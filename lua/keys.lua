@@ -116,6 +116,8 @@ end, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Misc
 -- ----
+vim.keymap.set('n', 'ZA', '<cmd>qa<cr>')
+
 -- Clear on pressing <Esc> in normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
