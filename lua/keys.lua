@@ -22,6 +22,15 @@ vim.keymap.set({ 'n', 'v', 'o' }, '<leader>d', [["_d]], { desc = 'Delete without
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]], { desc = 'Paste from system clipboard' })
 vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = 'Paste to end of line from system clipboard' })
 
+-- Paste register, starting with a newline. This is useful for when a register
+-- contains a yank without newlines.
+vim.keymap.set('n', 'gp', function()
+  vim.cmd(':put ' .. vim.v.register)
+end)
+vim.keymap.set('n', 'gP', function()
+  vim.cmd(':-1put ' .. vim.v.register)
+end)
+
 -- Duplicate line, putting the cursor at the right spot
 vim.keymap.set('n', 'yp', [[mqyyp`qj]], { desc = 'Duplicate line' })
 vim.keymap.set('v', 'yp', [[y'>p]], { desc = 'Duplicate selection' })
