@@ -24,7 +24,7 @@ vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = 'Paste to end of line from sy
 
 -- Duplicate line, putting the cursor at the right spot
 vim.keymap.set('n', 'yp', [[mqyyp`qj]], { desc = 'Duplicate line' })
--- vim.keymap.set('v', 'yp', [[y'>p]], { desc = 'Duplicate selection' })
+vim.keymap.set('v', 'yp', [[y'>p]], { desc = 'Duplicate selection' })
 
 -- Select last change/paste. A save counts changing the entire file...
 vim.keymap.set('n', 'gV', '`[v`]', { desc = 'Select last change' })
