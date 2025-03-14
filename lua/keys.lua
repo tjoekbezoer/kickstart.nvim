@@ -119,9 +119,12 @@ end, { desc = 'Open diagnostic [Q]uickfix list' })
 -- Clear on pressing <Esc> in normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- Reveal file in finder
+vim.keymap.set('n', '<leader>rf', '<cmd>silent !open -R %<CR>', { desc = 'Reveal in [F]inder' })
+
 -- Set the current working directory of the active window, based on
 -- the currently displayed buffer
-vim.keymap.set('n', 'cd', function()
+vim.keymap.set('n', '<leader>cd', function()
   local cur_filename = vim.api.nvim_buf_get_name(0)
   if cur_filename == nil or cur_filename == '' then
     return
@@ -130,6 +133,13 @@ vim.keymap.set('n', 'cd', function()
   local cur_directory = vim.fs.dirname(cur_filename)
   vim.fn.chdir(cur_directory)
 end, { desc = 'Set [C]urrent [D]irectory' })
+
+vim.keymap.set('n', '<leader>cw', function()
+  local ft = vim.bo.filetype
+  -- `read ++edit` makes read do automatic detection of file encodings, file
+  -- formats, and modelines.
+  vim.cmd('vnew | setlocal buftype=nofile | setlocal filetype=' .. ft .. ' | read ++edit # | 0d_ | diffthis | wincmd p | diffthis')
+end, { desc = '[C]lone [W]indow in diff mode' })
 
 -- Quickfix delete
 -- Set `dd` to delete a quickfix list item, but only set the
