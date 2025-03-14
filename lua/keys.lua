@@ -34,10 +34,10 @@ vim.keymap.set('n', 'gV', '`[v`]', { desc = 'Select last change' })
 -- Arrow keys for movement
 vim.keymap.set('n', '<left>', 'h')
 vim.keymap.set('n', '<right>', 'l')
--- Set vertical arrow keys to visual line movement (this takes
--- into account line wrapping). When jumping to a relative line,
--- add it to the jumplist. Also, use j/k instead of gj/gk as the
--- line count is off when jumping relative lines.
+-- Set vertical arrow keys to visual line movement (this takes into account
+-- line wrapping). When jumping to a relative line, add it to the jumplist.
+-- Also, use j/k instead of gj/gk as the line count is off when jumping
+-- relative lines.
 vim.keymap.set('n', '<up>', function()
   -- Only perform this trick when we're not in a quickfix list
   local isqf = vim.fn.getwininfo(vim.fn.win_getid())[1]['quickfix']
@@ -129,7 +129,7 @@ vim.keymap.set('n', 'cd', function()
 
   local cur_directory = vim.fs.dirname(cur_filename)
   vim.fn.chdir(cur_directory)
-end)
+end, { desc = 'Set [C]urrent [D]irectory' })
 
 -- Quickfix delete
 -- Set `dd` to delete a quickfix list item, but only set the

@@ -78,6 +78,11 @@ require('lazy').setup({
 
   { import = 'plugins' },
 }, {
+  dev = {
+    -- When a plugin is configured with `dev = true`, this is where lazy will
+    -- look for the plugin files.
+    path = '~/Sites/lua',
+  },
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
     -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
