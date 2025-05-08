@@ -87,6 +87,15 @@ vim.keymap.set('n', '<C-S-h>', '<C-w><S-h>', { desc = 'Move window to the left' 
 vim.keymap.set('n', '<C-S-l>', '<C-w><S-l>', { desc = 'Move window to the right' })
 vim.keymap.set('n', '<C-S-j>', '<C-w><S-j>', { desc = 'Move window down' })
 vim.keymap.set('n', '<C-S-k>', '<C-w><S-k>', { desc = 'Move window up' })
+-- And the arrow keys as well.
+vim.keymap.set('n', '<C-left>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-right>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-down>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-up>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+vim.keymap.set('n', '<C-S-left>', '<C-w><S-h>', { desc = 'Move window to the left' })
+vim.keymap.set('n', '<C-S-right>', '<C-w><S-l>', { desc = 'Move window to the right' })
+vim.keymap.set('n', '<C-S-down>', '<C-w><S-j>', { desc = 'Move window down' })
+vim.keymap.set('n', '<C-S-up>', '<C-w><S-k>', { desc = 'Move window up' })
 
 -- Logical inverse of <C-t> (move back in taglist) is <CA-t> to move forward in taglist
 vim.keymap.set('n', '<CA-t>', '<cmd>ta<cr>', { desc = 'Move forward one tag' })
