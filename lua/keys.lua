@@ -22,6 +22,11 @@ vim.keymap.set({ 'n', 'v', 'o' }, '<leader>d', [["_d]], { desc = 'Delete without
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]], { desc = 'Paste from system clipboard' })
 vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = 'Paste to end of line from system clipboard' })
 
+-- Yank entire file
+vim.keymap.set('n', 'gy', function()
+  vim.cmd ':%y'
+end)
+
 -- Paste register, starting with a newline. This is useful for when a register
 -- contains a yank without newlines.
 vim.keymap.set('n', 'gp', function()
