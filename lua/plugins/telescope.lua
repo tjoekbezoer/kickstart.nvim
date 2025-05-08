@@ -92,9 +92,10 @@ return { -- Fuzzy Finder (files, lsp, etc)
       local action_state = require 'telescope.actions.state'
 
       builtin.buffers {
+        only_cwd = true,
         -- initial_mode = "normal",
         -- previewer = false,
-        -- sort_lastused = true,
+        sort_mru = true,
         -- show_all_buffers = true,
         -- shorten_path = false,
         attach_mappings = function(prompt_bufnr, map)
