@@ -16,7 +16,7 @@ vim.keymap.set('v', '<A-k>', ":m '<-2<cr>gv=gv", { desc = 'Move Up' })
 -- ---------
 -- Delete without replacing yank register
 vim.keymap.set('x', '<leader>p', [["_dP]], { desc = 'Paste without replacing yank register' })
-vim.keymap.set({ 'n', 'v', 'o' }, '<leader>d', [["_d]], { desc = 'Delete without replacing yank register' })
+vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]], { desc = 'Delete without replacing yank register' })
 
 -- Yank straight to system clipboard
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]], { desc = 'Paste from system clipboard' })
