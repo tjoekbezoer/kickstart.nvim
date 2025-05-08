@@ -1,5 +1,6 @@
 return {
   'folke/which-key.nvim',
+  enabled = false,
   event = 'VimEnter', -- Sets the loading event to 'VimEnter'
   keys = {
     { '<leader>c', group = '[C]ode' },
@@ -26,9 +27,15 @@ return {
     },
     plugins = {
       marks = false,
-      operators = false,
-      motions = false,
-      text_objects = false,
+      presets = {
+        operators = false,
+        motions = false,
+        text_objects = false,
+        windows = false,
+        nav = false,
+        z = false,
+        g = false,
+      },
     },
     expand = 1,
   },
