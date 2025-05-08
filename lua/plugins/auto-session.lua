@@ -19,7 +19,7 @@ return {
   },
   keys = {
     { '<leader>sw', '<cmd>SessionSearch<CR>', desc = 'Session search' },
-    { '<leader>wa', '<cmd>SessionSave<CR>', desc = 'Save session' },
+    { '<leader>ww', '<cmd>SessionSave<CR>', desc = 'Save session' },
     { '<leader>wd', '<cmd>Autosession delete<CR>', desc = 'Delete session' },
     -- { '<leader>wa', '<cmd>SessionToggleAutoSave<CR>', desc = 'Toggle autosave' },
   },
