@@ -6,6 +6,9 @@ vim.g.neovide_scroll_animation_far_lines = 0
 -- Added `localoptions`, as recommended by auto-session checkhealth
 vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,terminal,localoptions'
 
+-- Listen to formatting options in .editorconfig files
+vim.g.editorconfig = true
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
