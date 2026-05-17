@@ -78,6 +78,8 @@ require('lazy').setup({
   { 'tpope/vim-sleuth' },
   -- Autoindent on p/P/o/O a bit smarter than default
   { 'ku1ik/vim-pasta' },
+  -- The illegal git client for vim
+  { 'tpope/vim-fugitive' },
 
   { import = 'plugins' },
 }, {
