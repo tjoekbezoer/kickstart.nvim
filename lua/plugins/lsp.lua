@@ -221,6 +221,7 @@ return {
       tinymist = {
         formatterMode = 'typstyle',
       },
+      emmet_language_server = {},
     }
 
     -- Ensure the servers and tools above are installed
