@@ -216,6 +216,11 @@ return {
           },
         },
       },
+
+      yamlls = {},
+      tinymist = {
+        formatterMode = 'typstyle',
+      },
     }
 
     -- Ensure the servers and tools above are installed
