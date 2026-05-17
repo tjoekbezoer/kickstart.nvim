@@ -4,6 +4,11 @@ return {
     -- Simple file browser
     local MiniFiles = require 'mini.files'
     MiniFiles.setup {
+      content = {
+        filter = function(item)
+          return not (item.name == '.DS_Store' or item.name == '.git')
+        end,
+      },
       mappings = {
         close = 'q',
         go_in = '<right>',
@@ -41,7 +46,7 @@ return {
       MiniFiles.open()
     end, { desc = '[B]rowse Filesystem' })
 
-    vim.keymap.set('n', '<leader>rr', function()
+    vim.keymap.set('n', '<leader>rb', function()
       MiniFiles.open(vim.api.nvim_buf_get_name(0))
       MiniFiles.reveal_cwd()
     end, { desc = '[B]rowse Filesystem' })
