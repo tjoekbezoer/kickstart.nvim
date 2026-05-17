@@ -3,6 +3,12 @@ vim.g.neovide_hide_mouse_when_typing = 1
 vim.g.neovide_scroll_animation_length = 0
 vim.g.neovide_scroll_animation_far_lines = 0
 
+-- Disable mouse context menu
+vim.cmd [[
+	aunmenu PopUp
+	autocmd! nvim.popupmenu
+]]
+
 -- Added `localoptions`, as recommended by auto-session checkhealth
 vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,terminal,localoptions'
 
