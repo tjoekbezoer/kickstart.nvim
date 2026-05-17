@@ -20,7 +20,10 @@ require('lazy').setup({
   {
     -- 'Shatur/neovim-ayu', 'catppuccin/nvim'
     'zenbones-theme/zenbones.nvim',
-    dependencies = { 'rktjmp/lush.nvim', { 'rose-pine/neovim', name = 'rose-pine' } },
+    dependencies = {
+      'rktjmp/lush.nvim',
+      { 'rose-pine/neovim', name = 'rose-pine' },
+    },
 
     priority = 1000,
     -- Toggle between light and dark version of the theme
