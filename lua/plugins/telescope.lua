@@ -62,16 +62,16 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'
-    -- vim.keymap.set('n', '<leader>sc', function()
-    --   builtin.colorscheme { enable_preview = true }
-    -- end, { desc = 'Search [C]olorschemes' })
     vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
     vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
     vim.keymap.set('n', '<leader>sf', function()
       builtin.find_files { hidden = true }
     end, { desc = '[S]earch [F]iles' })
     vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-    vim.keymap.set('n', '<leader>sc', builtin.grep_string, { desc = '[S]earch current [W]ord' })
+    vim.keymap.set({ 'n', 'v' }, '<leader>sc', function()
+      vim.cmd 'noau normal! ""y'
+      builtin.grep_string { search = vim.fn.getreg '"' }
+    end, { desc = '[S]earch current [W]ord' })
     vim.keymap.set('n', '<leader>sl', function()
       builtin.lsp_references {
         show_line = false,
