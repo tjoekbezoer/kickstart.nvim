@@ -68,10 +68,11 @@ return { -- Fuzzy Finder (files, lsp, etc)
       builtin.find_files { hidden = true }
     end, { desc = '[S]earch [F]iles' })
     vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-    vim.keymap.set({ 'n', 'v' }, '<leader>sc', function()
+    vim.keymap.set('v', '<leader>sc', function()
       vim.cmd 'noau normal! ""y'
       builtin.grep_string { search = vim.fn.getreg '"' }
-    end, { desc = '[S]earch current [W]ord' })
+    end, { desc = '[S]earch current [W]ord/selection' })
+    vim.keymap.set('n', '<leader>sc', builtin.grep_string, { desc = '[S]earch current [W]ord' })
     vim.keymap.set('n', '<leader>sl', function()
       builtin.lsp_references {
         show_line = false,
