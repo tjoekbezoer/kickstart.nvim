@@ -21,8 +21,20 @@ vim.keymap.set('v', '<A-down>', ":m '>+1<cr>gv=gv", { desc = 'Move Down' })
 vim.keymap.set('v', '<A-up>', ":m '<-2<cr>gv=gv", { desc = 'Move Up' })
 
 -- Make 'delete to end of paragraph' behave more logical
-vim.keymap.set('n', 'd}', 'V}d')
-vim.keymap.set('n', 'd{', 'gj^d{O<esc>gj')
+vim.keymap.set('o', '}', function()
+  vim.cmd 'normal! V'
+  vim.cmd 'normal! }'
+  if vim.api.nvim_get_current_line() == '' then
+    vim.cmd 'normal! k'
+  end
+end, { desc = 'to end of paragraph (linewise)' })
+vim.keymap.set('o', '{', function()
+  vim.cmd 'normal! V'
+  vim.cmd 'normal! {'
+  if vim.api.nvim_get_current_line() == '' then
+    vim.cmd 'normal! j'
+  end
+end, { desc = 'to beginning of paragraph (linewise)' })
 
 -- Registers
 -- ---------
