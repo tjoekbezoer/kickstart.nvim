@@ -1,56 +1,6 @@
 return {
   'echasnovski/mini.nvim',
   config = function()
-    -- Simple file browser
-    local MiniFiles = require 'mini.files'
-    MiniFiles.setup {
-      content = {
-        filter = function(item)
-          return not (item.name == '.DS_Store' or item.name == '.git')
-        end,
-      },
-      mappings = {
-        close = 'q',
-        go_in = '<right>',
-        go_in_plus = 'L',
-        go_out = '<left>',
-        go_out_plus = 'H',
-        reset = '<BS>',
-        reveal_cwd = '@',
-        show_help = '<C-/>',
-        synchronize = '=',
-        trim_left = '>',
-        trim_right = '<',
-      },
-      windows = {
-        preview = true,
-        width_preview = 120,
-      },
-    }
-
-    local files_set_cwd = function()
-      -- Works only if cursor is on the valid file system entry
-      local cur_entry_path = MiniFiles.get_fs_entry().path
-      local cur_directory = vim.fs.dirname(cur_entry_path)
-      vim.fn.chdir(cur_directory)
-    end
-
-    vim.api.nvim_create_autocmd('User', {
-      pattern = 'MiniFilesBufferCreate',
-      callback = function(args)
-        vim.keymap.set('n', 'cd', files_set_cwd, { buffer = args.data.buf_id })
-      end,
-    })
-
-    vim.keymap.set('n', '<leader>b', function()
-      MiniFiles.open()
-    end, { desc = '[B]rowse Filesystem' })
-
-    vim.keymap.set('n', '<leader>rb', function()
-      MiniFiles.open(vim.api.nvim_buf_get_name(0))
-      MiniFiles.reveal_cwd()
-    end, { desc = '[B]rowse Filesystem' })
-
     -- Better Around/Inside textobjects
     --
     -- Examples:
@@ -110,8 +60,5 @@ return {
     MiniStatusLine.section_location = function()
       return '%2l:%-2v'
     end
-
-    -- ... and there is more!
-    --  Check out: https://github.com/echasnovski/mini.nvim
   end,
 }
