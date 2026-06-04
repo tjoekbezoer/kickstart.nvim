@@ -36,6 +36,22 @@ vim.keymap.set('o', '{', function()
   end
 end, { desc = 'to beginning of paragraph (linewise)' })
 
+-- Operator motion: 'To beginning/end of function.
+vim.keymap.set({ 'x', 'o' }, '[f', function()
+  vim.cmd [[normal ^m"Vifo'"]]
+end)
+vim.keymap.set({ 'x', 'o' }, ']f', function()
+  vim.cmd [[normal ^m"Vif'"]]
+end)
+
+-- Operator motion: 'To beginning/end of indentation.
+vim.keymap.set({ 'x', 'o' }, '[i', function()
+  vim.cmd [[normal ^m"Vii'"]]
+end)
+vim.keymap.set({ 'x', 'o' }, ']i', function()
+  vim.cmd [[normal ^m"Viio'"]]
+end)
+
 -- Registers
 -- ---------
 -- Delete without replacing yank register
