@@ -26,10 +26,19 @@ return {
   },
   opts = {
     floating_window_scaling_factor = 0.6,
-    open_for_directories = false,
+    open_for_directories = true,
     keymaps = {
       open_file_in_horizontal_split = '<c-s>',
       grep_in_directory = false,
+      cycle_open_buffers = '<s-tab>',
+    },
+    hooks = {
+      yazi_closed_successfully = function()
+        -- To make sure the background color of the editor windows gets
+        -- repainted, preventing artifacts.
+        vim.cmd 'redraw!'
+        vim.cmd('colorscheme ' .. vim.g.colors_name)
+      end,
     },
   },
   -- 👇 if you use `open_for_directories=true`, this is recommended
