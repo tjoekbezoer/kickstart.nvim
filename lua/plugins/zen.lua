@@ -3,10 +3,10 @@ return {
   opts = {
     window = {
       backdrop = 1,
-      width = 150,
+      width = 120,
     },
   },
   keys = {
-    { '<leader>x', '<cmd>ZenMode<cr>', desc = 'Toggle [Z]en Mode' },
+    { '<leader>xz', '<cmd>ZenMode<cr>', desc = 'Toggle [Z]en Mode' },
   },
 }
