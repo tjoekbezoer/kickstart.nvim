@@ -57,7 +57,7 @@ require('lazy').setup({
         end,
       })
 
-      vim.keymap.set('n', '<leader>tt', function()
+      local function toggle_theme()
         vim.o.termguicolors = true
         local is_light = vim.o.background == 'light'
 
@@ -66,7 +66,9 @@ require('lazy').setup({
         else
           theme 'light'
         end
-      end)
+      end
+      vim.keymap.set('n', '<leader>tt', toggle_theme)
+      vim.keymap.set('n', '<F5>', toggle_theme)
     end,
   },
 
